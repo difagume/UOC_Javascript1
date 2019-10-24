@@ -1,5 +1,6 @@
 import sumatorio from './kata0';
-describe('Kata #0: sumtorio', () => {
+
+describe('Kata #0: sumatorio', () => {
   test('de 0 es 0', () => {
     expect(sumatorio(0)).toBe(0);
   });
