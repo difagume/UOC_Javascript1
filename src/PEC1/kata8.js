@@ -7,7 +7,7 @@ export let arbol = {
 };
 
 export default function obtenerFruta(obj) {
-  if (obj.fruta) {
+  if (obj.hasOwnProperty('fruta')) {
     return arbol.obtenerFruta();
   } else return 'No fruta';
 }
