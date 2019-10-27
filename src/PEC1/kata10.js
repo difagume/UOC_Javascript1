@@ -26,7 +26,11 @@ export default function plantarArbol(especie, fruta) {
       },
 
       set definirFruta(val) {
-        if (typeof val === 'string') f = val;
+        if (typeof val === 'string') {
+          f = val;
+        } else {
+          throw new Error();
+        }
       },
 
       set definirEspecie(val) {
