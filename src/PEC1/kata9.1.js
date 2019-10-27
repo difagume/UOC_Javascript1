@@ -5,10 +5,6 @@ export default function plantarArbol(especie, fruta) {
       this.fruta = fruta;
     }
 
-    Arbol.prototype.obtenerFruta = function() {
-      return this.fruta;
-    };
-
     const arbol = new Arbol(especie, fruta);
     return arbol;
   } else return null;

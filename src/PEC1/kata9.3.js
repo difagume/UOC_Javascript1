@@ -1,11 +1,10 @@
-export default function plantarArbol() {
+export default function plantarArbol(especie, fruta) {
   var arbol = {
-    get obtenerFruta() {
-      return 'pera';
-    },
-
     get obtenerEspecie() {
-      return 'peral';
+      return especie;
+    },
+    get obtenerFruta() {
+      return fruta;
     }
   };
 

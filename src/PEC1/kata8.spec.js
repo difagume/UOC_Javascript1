@@ -22,6 +22,7 @@ describe('Kata #8: objeto arbol', () => {
     expect(arbol.obtenerFruta()).toBe('manzana');
   });
 
+  /* kata 8.2 */
   test(`elemento recibido tiene propiedad 'fruta'`, () => {
     expect({ fruta: '' }).toHaveProperty('fruta');
   });

@@ -15,7 +15,7 @@ var coche = {
 coche.obtenerMarca(); // Ford
 var marcaDelCoche = coche.obtenerMarca;
 var marca = 'Ford';
-this.marcaDelCoche();
+marcaDelCoche();
 
 /*
  * 2. Para que la úlitma línea devuelva el valor de 'Ford' se debe colocar los parentesis al final de la asignación de
