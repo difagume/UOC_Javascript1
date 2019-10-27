@@ -1,11 +1,10 @@
-export default function plantarArbol(especie, fruta) {
-  if (typeof especie === 'string' && typeof fruta === 'string') {
-    function Arbol(especie, fruta) {
-      this.especie = especie;
-      this.fruta = fruta;
-    }
+export default function plantarArbol(val_especie, val_fruta) {
+  if (typeof val_especie === 'string' && typeof val_fruta === 'string') {
+    var arbol = {
+      especie: val_especie,
+      fruta: val_fruta
+    };
 
-    const arbol = new Arbol(especie, fruta);
     return arbol;
   } else return null;
 }

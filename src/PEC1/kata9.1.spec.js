@@ -9,6 +9,7 @@ describe('Kata #9.1: factoría_de_objetos', () => {
   });
 
   test(`al llamar la función con los parámetros 'peral' y 'pera' devuelve el objeto { especie: 'peral', fruta: 'pera' }`, () => {
-    expect(plantarArbol('peral', 'pera')).toEqual({ especie: 'peral', fruta: 'pera' });
+    const arbol = plantarArbol('peral', 'pera');
+    expect(arbol).toEqual({ especie: 'peral', fruta: 'pera' });
   });
 });
