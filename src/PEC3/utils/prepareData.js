@@ -14,8 +14,8 @@ function filterStandings(standings) {
 
     return standingDataByType.table.map(row => {
       const {
-        team,
         position,
+        team,
         playedGames,
         won,
         draw,
@@ -26,14 +26,14 @@ function filterStandings(standings) {
 
       return {
         teamId: team.id,
+        rank: position,
         team: team.name,
-        position,
-        playedGames,
+        'played games': playedGames,
         won,
         draw,
         lost,
-        goalsFor,
-        goalsAgainst
+        'goals for': goalsFor,
+        'goals against': goalsAgainst
       };
     });
   });

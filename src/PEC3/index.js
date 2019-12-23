@@ -3,7 +3,7 @@ import { TEAM_ID } from "./config";
 
 export async function init() {
   const standings = await getStandings();
-  //standings.logData();
+  standings.logData();
   standings.renderData()
 
   //const matches = await getMatches();

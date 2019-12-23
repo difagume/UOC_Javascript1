@@ -32,15 +32,58 @@ export default class Standings {
     for (const standingType in this.standings) {
       const { label, data } = this.standings[standingType];
 
-      console.log(label);
-      console.table(data);
+      //console.log(label);
+      //console.table(data);
     }
   }
 
   renderData() {
+    const clasificacion = this.standings.TOTAL
+    const { label, data } = clasificacion
+    const cabeceras = Object.keys(data[0])
+
     const tTitulo = document.createElement('h2')
-    tTitulo.innerText = this.competitionName
-    const targetDiv = document.getElementById('content')
-    targetDiv.appendChild(tTitulo)
+    tTitulo.innerText = label
+
+    const mainDiv = document.getElementById('main')
+    const contentDiv = document.createElement('div')
+    contentDiv.setAttribute('id', 'content')
+
+    mainDiv.appendChild(contentDiv)
+
+    contentDiv.appendChild(tTitulo)
+
+    const table = document.createElement('table');
+    table.setAttribute('class', 'standings')
+
+    const header = document.createElement('tr')
+
+    for (let i = 1; i < cabeceras.length; i++) {
+      const th = document.createElement('th')
+      th.innerText = cabeceras[i]
+      header.appendChild(th)
+    }
+
+    table.appendChild(header)
+
+    data.forEach(clasificado => {
+
+      const row = document.createElement('tr')
+
+      for (const key in clasificado) {
+        if (clasificado.hasOwnProperty(key)) {
+
+          if (key !== 'teamId') {
+            const element = clasificado[key];
+            const cell = document.createElement('td')
+            cell.textContent = element
+            row.appendChild(cell)
+          }
+        }
+      }
+      table.appendChild(row)
+    });
+
+    contentDiv.appendChild(table);
   }
 }
