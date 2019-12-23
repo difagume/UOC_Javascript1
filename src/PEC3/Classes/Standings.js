@@ -1,4 +1,7 @@
-const TYPES = { total: "TOTAL", home: "HOME", away: "AWAY" };
+import { getTeamDetails } from '../api';
+
+const TYPES = { total: 'TOTAL', home: 'HOME', away: 'AWAY' };
+let rowSelected = 0
 
 export default class Standings {
   constructor(data) {
@@ -8,15 +11,15 @@ export default class Standings {
     this.currentMatchday = currentMatchday;
     this.standings = {
       [TYPES.total]: {
-        label: "Total standings",
+        label: 'Total standings',
         data: total
       },
       [TYPES.home]: {
-        label: "Home standings",
+        label: 'Home standings',
         data: home
       },
       [TYPES.away]: {
-        label: "Away standings",
+        label: 'Away standings',
         data: away
       }
     };
@@ -32,8 +35,8 @@ export default class Standings {
     for (const standingType in this.standings) {
       const { label, data } = this.standings[standingType];
 
-      //console.log(label);
-      //console.table(data);
+      console.log(label);
+      console.table(data);
     }
   }
 
@@ -42,18 +45,19 @@ export default class Standings {
     const { label, data } = clasificacion
     const cabeceras = Object.keys(data[0])
 
-    const tTitulo = document.createElement('h2')
-    tTitulo.innerText = label
-
     const mainDiv = document.getElementById('main')
     const contentDiv = document.createElement('div')
     contentDiv.setAttribute('id', 'content')
+    const sidebarDiv = document.createElement('div')
+    sidebarDiv.setAttribute('id', 'sidebar')
 
-    mainDiv.appendChild(contentDiv)
+    const tTitulo = document.createElement('h2')
+    tTitulo.innerText = label
 
     contentDiv.appendChild(tTitulo)
 
     const table = document.createElement('table');
+    table.setAttribute('id', 'tableStandings')
     table.setAttribute('class', 'standings')
 
     const header = document.createElement('tr')
@@ -73,9 +77,14 @@ export default class Standings {
       for (const key in clasificado) {
         if (clasificado.hasOwnProperty(key)) {
 
-          if (key !== 'teamId') {
+          const cell = document.createElement('td')
+          if (key === 'teamId') {
+            const id = clasificado[key];
+            row.setAttribute('id', id)
+            row.setAttribute('data-id', id)
+          }
+          else {
             const element = clasificado[key];
-            const cell = document.createElement('td')
             cell.textContent = element
             row.appendChild(cell)
           }
@@ -85,5 +94,40 @@ export default class Standings {
     });
 
     contentDiv.appendChild(table);
+
+    mainDiv.appendChild(contentDiv)
+    mainDiv.appendChild(sidebarDiv)
+
+
+    this.addEventClick()
+  }
+
+  addEventClick() {
+    const cells = document.querySelectorAll('#tableStandings tr')
+
+    cells.forEach(e => e.addEventListener('click',
+      async function () {
+        const row = document.getElementById(e.dataset.id)
+
+        row.style.backgroundColor = '#d3d3d369'
+        row.style.fontStyle = 'italic'
+        if (rowSelected) {
+          const rowAnterior = document.getElementById(rowSelected)
+          rowAnterior.style.backgroundColor = 'transparent'
+          rowAnterior.style.fontStyle = 'normal'
+        }
+        rowSelected = e.dataset.id
+
+        const teamDetails = await getTeamDetails(e.dataset.id)
+        const teamDiv = document.getElementById('team')
+
+        if (teamDiv === null) {
+          teamDetails.renderData()
+        }
+        else {
+          teamDetails.refreshData()
+        }
+
+      }));
   }
 }

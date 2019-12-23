@@ -3,15 +3,17 @@ import { TEAM_ID } from "./config";
 
 export async function init() {
   const standings = await getStandings();
-  standings.logData();
+  //standings.logData();
   standings.renderData()
 
   //const matches = await getMatches();
   //matches.logData();
 
-  //const scorers = await getScorers();
+  const scorers = await getScorers();
   //scorers.logData();
+  scorers.renderData()
 
   //const teamDetails = await getTeamDetails(TEAM_ID);
   //teamDetails.logData();
+  //teamDetails.renderData();
 }
