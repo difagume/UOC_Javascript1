@@ -1,4 +1,4 @@
-import init from "./PEC2";
+import { init } from './PEC3';
 
 console.log('Bienvenido a JS para programadores');
 
