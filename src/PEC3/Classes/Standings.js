@@ -79,7 +79,6 @@ export default class Standings {
           const cell = document.createElement('td')
           if (key === 'teamId') {
             const id = clasificado[key];
-            //row.setAttribute('id', id)
             row.setAttribute('data-id', id)
           }
           else {
@@ -94,7 +93,13 @@ export default class Standings {
 
     contentDiv.appendChild(table);
 
-    mainDiv.appendChild(contentDiv)
+    const matchesDiv = document.getElementById('content')
+    if (matchesDiv === null) {
+      mainDiv.appendChild(contentDiv)
+    }
+    else {
+      mainDiv.replaceChild(contentDiv, matchesDiv)
+    }
     mainDiv.appendChild(sidebarDiv)
 
 

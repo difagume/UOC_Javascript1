@@ -1,3 +1,9 @@
+a.is-active {
+    background-color: lightgray;
+    pointer-events: none;
+    color: white;
+}
+
 table {
     width: 100%;
 }
@@ -29,6 +35,10 @@ table.standings th:nth-child(2), table.standings td:nth-child(2) {
 }
 
 table.scorers th:nth-child(1), table.scorers td:nth-child(1), table.scorers th:nth-child(2), table.scorers td:nth-child(2) {
+    text-align: left;
+}
+
+table.matches th:nth-child(2), table.matches td:nth-child(2), table.matches th:nth-child(3), table.matches td:nth-child(3) {
     text-align: left;
 }
 

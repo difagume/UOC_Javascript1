@@ -1,19 +1,12 @@
-import { getTeamDetails } from '../api';
+import { getTeamDetails, getMatches, getStandings, getScorers } from '../api';
+
+export function setLoading(display) {
+  const loader = document.querySelector('.loader')
+  loader.style.display = display
+}
 
 export async function handleGetTeamDetail(teamId) {
   setLoading('block')
-  //const row = document.getElementById(e.dataset.id)
-
-  /*row.style.backgroundColor = '#d3d3d369'
-  row.style.fontStyle = 'italic'
-  if (rowSelected) {
-    const rowAnterior = document.getElementById(rowSelected)
-    rowAnterior.style.backgroundColor = 'transparent'
-    rowAnterior.style.fontStyle = 'normal'
-  }
-  rowSelected = e.dataset.id*/
-
-  //const teamDetails = await getTeamDetails(e.dataset.id)
   const teamDetails = await getTeamDetails(teamId)
   const teamDiv = document.getElementById('team')
 
@@ -27,7 +20,26 @@ export async function handleGetTeamDetail(teamId) {
   setLoading('none')
 }
 
-export function setLoading(display) {
-  const loader = document.querySelector('.loader')
-  loader.style.display = display
+export async function handleTabs(btnId) {
+  const btn = document.getElementById(btnId)
+  const btnActive = document.querySelector('.is-active')
+
+  btn.setAttribute('class', 'is-active')
+  btnActive.removeAttribute('class')
+
+  setLoading('block')
+
+  if (btnId === 'btnMatches') {
+    const matches = await getMatches()
+    matches.renderData()
+  }
+  else {
+    const standings = await getStandings()
+    standings.renderData()
+
+    const scorers = await getScorers()
+    scorers.renderData()
+  }
+
+  setLoading('none')
 }
