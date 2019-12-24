@@ -59,6 +59,11 @@ table.standings tr:hover, table.scorers tr:hover {
     text-align: center;
 }
 
+.cell-over:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
 #app {
     padding: 24px;
 }

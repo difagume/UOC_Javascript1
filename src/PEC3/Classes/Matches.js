@@ -1,3 +1,5 @@
+import { handleGetTeamDetail } from '../utils/events';
+
 export default class Matches {
   constructor(data) {
     this.matches = data;
@@ -40,6 +42,8 @@ export default class Matches {
     mainDiv.removeChild(sideBar)
 
     mainDiv.replaceChild(matchesDiv, contentDiv)
+
+    this.setCellEvent()
   }
 
 
@@ -123,20 +127,30 @@ export default class Matches {
 
     table.appendChild(header)
 
-    const listMatches = this.getMatchByDay(seasonNum).map(({ matchDay, homeTeamId, awayTeamId, ...item }) => item);
+    const listMatches = this.getMatchByDay(seasonNum).map(({ matchDay, ...item }) => item);
 
     listMatches.forEach(match => {
 
       const row = document.createElement('tr')
 
       for (const key in match) {
-        if (match.hasOwnProperty(key)) {
+        if (!key.includes('Id') && match.hasOwnProperty(key)) {
 
           const cell = document.createElement('td')
           const element = match[key];
           if (key === 'date') {
             const date = new Date(element)
             cell.textContent = date.toLocaleDateString()
+          }
+          else if (key === 'homeTeam') {
+            cell.setAttribute('data-id', match['homeTeamId'])
+            cell.setAttribute('class', 'cell-over')
+            cell.textContent = element
+          }
+          else if (key === 'awayTeam') {
+            cell.setAttribute('data-id', match['awayTeamId'])
+            cell.setAttribute('class', 'cell-over')
+            cell.textContent = element
           }
           else {
             cell.textContent = element
@@ -148,6 +162,17 @@ export default class Matches {
       table.appendChild(row)
     });
 
+    this.setCellEvent()
+
     return table
+  }
+
+  setCellEvent() {
+    const cells = document.querySelectorAll('.cell-over')
+
+    cells.forEach(e => e.addEventListener('click',
+      function () {
+        handleGetTeamDetail(e.dataset.id)
+      }));
   }
 }

@@ -15,7 +15,10 @@ export default class Team {
   }
 
   renderData() {
-    const sidebarDiv = document.getElementById('sidebar')
+    let sidebarDiv = document.getElementById('sidebar')
+    if (sidebarDiv === null) {
+      sidebarDiv = document.getElementById('content')
+    }
 
     const teamDiv = document.createElement('div')
     teamDiv.setAttribute('id', 'team')
