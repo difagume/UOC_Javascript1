@@ -1,3 +1,5 @@
+import { handleGetTeamDetail } from '../utils/events';
+
 export default class Scorers {
   constructor(data) {
     this.scorers = data;
@@ -24,6 +26,7 @@ export default class Scorers {
     scorersDiv.appendChild(tTitulo)
 
     const table = document.createElement('table');
+    table.setAttribute('id', 'tableScorers')
     table.setAttribute('class', 'scorers')
 
     const header = document.createElement('tr')
@@ -42,14 +45,12 @@ export default class Scorers {
 
     table.appendChild(header)
 
-
     this.scorers.forEach(scorer => {
-
-      //console.log(scorer);
-
-      const { player, team, goals } = scorer
+      const { teamId, player, team, goals } = scorer
 
       const row = document.createElement('tr')
+      //row.setAttribute('id', teamId)
+      row.setAttribute('data-id', teamId)
 
       const playerCell = document.createElement('td')
       const teamCell = document.createElement('td')
@@ -69,5 +70,16 @@ export default class Scorers {
     scorersDiv.appendChild(table);
 
     sidebarDiv.appendChild(scorersDiv)
+
+    this.addEventClick()
+  }
+
+  addEventClick() {
+    const cells = document.querySelectorAll('#tableScorers tr')
+
+    cells.forEach(e => e.addEventListener('click',
+      async function () {
+        handleGetTeamDetail(e.dataset.id)
+      }));
   }
 }

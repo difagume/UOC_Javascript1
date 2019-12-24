@@ -1,7 +1,6 @@
-import { getTeamDetails } from '../api';
+import { handleGetTeamDetail } from '../utils/events';
 
 const TYPES = { total: 'TOTAL', home: 'HOME', away: 'AWAY' };
-let rowSelected = 0
 
 export default class Standings {
   constructor(data) {
@@ -80,7 +79,7 @@ export default class Standings {
           const cell = document.createElement('td')
           if (key === 'teamId') {
             const id = clasificado[key];
-            row.setAttribute('id', id)
+            //row.setAttribute('id', id)
             row.setAttribute('data-id', id)
           }
           else {
@@ -106,28 +105,8 @@ export default class Standings {
     const cells = document.querySelectorAll('#tableStandings tr')
 
     cells.forEach(e => e.addEventListener('click',
-      async function () {
-        const row = document.getElementById(e.dataset.id)
-
-        row.style.backgroundColor = '#d3d3d369'
-        row.style.fontStyle = 'italic'
-        if (rowSelected) {
-          const rowAnterior = document.getElementById(rowSelected)
-          rowAnterior.style.backgroundColor = 'transparent'
-          rowAnterior.style.fontStyle = 'normal'
-        }
-        rowSelected = e.dataset.id
-
-        const teamDetails = await getTeamDetails(e.dataset.id)
-        const teamDiv = document.getElementById('team')
-
-        if (teamDiv === null) {
-          teamDetails.renderData()
-        }
-        else {
-          teamDetails.refreshData()
-        }
-
+      function () {
+        handleGetTeamDetail(e.dataset.id)
       }));
   }
 }

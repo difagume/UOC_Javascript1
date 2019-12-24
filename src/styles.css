@@ -119,3 +119,29 @@ table.standings tr:hover, table.scorers tr:hover {
     flex: 1;
     padding-top: 8px;
 }
+
+/*  SPINNER REFERENCIA: https://www.w3schools.com/howto/howto_css_loader.asp */
+
+.loader {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -20px;
+    margin-left: -20px;
+    border: 5px solid transparent;
+    border-top: 5px solid #e8438f;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
