@@ -1,10 +1,10 @@
 const COMPETITION_ID = 2014;
 
-const API = "https://API.football-data.org/v2";
+const API = 'https://API.football-data.org/v2';
 
 export const TEAM_ID = 81;
 
-export const API_TOKEN = "b2bdf08f107541ec91877a6212931ddb";
+export const API_TOKEN = 'b2bdf08f107541ec91877a6212931ddb';
 
 export const ENDPOINTS = {
   COMPETITION: `${API}/competitions/${COMPETITION_ID}/teams`,

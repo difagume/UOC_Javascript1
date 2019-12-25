@@ -26,8 +26,6 @@ export default class Match {
   }
 
   logData() {
-    console.log(
-      `${this.homeTeam} ${this.homeScore} - ${this.awayScore} ${this.awayTeam}`
-    );
+    console.log(`${this.homeTeam} ${this.homeScore} - ${this.awayScore} ${this.awayTeam}`);
   }
 }

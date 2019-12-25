@@ -1,4 +1,4 @@
-import { Match } from "../Classes";
+import { Match } from '../Classes';
 
 function getTypes(standings) {
   return standings.map(standingType => standingType.type);
@@ -8,21 +8,10 @@ function filterStandings(standings) {
   const types = getTypes(standings);
 
   return types.map(standingType => {
-    const standingDataByType = standings.find(
-      array => array.type === standingType
-    );
+    const standingDataByType = standings.find(array => array.type === standingType);
 
     return standingDataByType.table.map(row => {
-      const {
-        position,
-        team,
-        playedGames,
-        won,
-        draw,
-        lost,
-        goalsFor,
-        goalsAgainst
-      } = row;
+      const { position, team, playedGames, won, draw, lost, goalsFor, goalsAgainst } = row;
 
       return {
         teamId: team.id,

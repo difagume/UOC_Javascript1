@@ -6,7 +6,7 @@ export default class Matches {
   }
 
   getMatchByDay(numDay) {
-    return this.matches[numDay]
+    return this.matches[numDay];
   }
 
   logData() {
@@ -22,157 +22,150 @@ export default class Matches {
   }
 
   renderData() {
-    const mainDiv = document.getElementById('main')
-    const contentDiv = document.getElementById('content')
-    const matchesDiv = document.createElement('div')
-    matchesDiv.setAttribute('id', 'content')
-    const sideBar = document.getElementById('sidebar')
+    const mainDiv = document.getElementById('main');
+    const contentDiv = document.getElementById('content');
+    const matchesDiv = document.createElement('div');
+    matchesDiv.setAttribute('id', 'content');
+    const sideBar = document.getElementById('sidebar');
 
-    const tTitulo = document.createElement('h2')
-    tTitulo.innerText = 'Matches'
+    const tTitulo = document.createElement('h2');
+    tTitulo.innerText = 'Matches';
 
-    matchesDiv.appendChild(tTitulo)
+    matchesDiv.appendChild(tTitulo);
 
-    const table = this.fillTable()
+    const table = this.fillTable();
 
     matchesDiv.appendChild(table);
 
-    this.setPaginacion(matchesDiv)
+    this.setPaginacion(matchesDiv);
 
-    mainDiv.removeChild(sideBar)
+    mainDiv.removeChild(sideBar);
 
-    mainDiv.replaceChild(matchesDiv, contentDiv)
+    mainDiv.replaceChild(matchesDiv, contentDiv);
 
-    this.setCellEvent()
+    this.setCellEvent();
   }
 
-
   setPaginacion(divPadre) {
-    const temporadas = Object.keys(this.matches).length
-    const h4 = document.createElement('h4')
-    h4.textContent = 'Season: '
+    const temporadas = Object.keys(this.matches).length;
+    const h4 = document.createElement('h4');
+    h4.textContent = 'Season: ';
 
-    const nav = document.createElement('nav')
-    nav.style.display = 'flex'
-    nav.style.justifyContent = 'center'
-    nav.style.borderTop = '1px solid black'
+    const nav = document.createElement('nav');
+    nav.style.display = 'flex';
+    nav.style.justifyContent = 'center';
+    nav.style.borderTop = '1px solid black';
 
-    const ul = document.createElement('ul')
-    ul.style.listStyle = 'none'
-    ul.style.display = 'flex'
-    ul.style.alignItems = 'center'
+    const ul = document.createElement('ul');
+    ul.style.listStyle = 'none';
+    ul.style.display = 'flex';
+    ul.style.alignItems = 'center';
 
     for (let i = 1; i <= temporadas; i++) {
-      const li = document.createElement('li')
-      li.style.margin = '0 1px'
-      const a = document.createElement('a')
-      a.setAttribute('id', i)
-      a.setAttribute('data-id', i)
-      a.setAttribute('href', '#')
+      const li = document.createElement('li');
+      li.style.margin = '0 1px';
+      const a = document.createElement('a');
+      a.setAttribute('id', i);
+      a.setAttribute('data-id', i);
+      a.setAttribute('href', '#');
       if (i === 1) {
-        a.setAttribute('class', 'is-active')
+        a.setAttribute('class', 'is-active');
       }
 
       a.addEventListener('click', e => {
-        this.fillTable(e.target.dataset.id)
-      })
+        this.fillTable(e.target.dataset.id);
+      });
 
-      a.style.fontSize = 'small'
-      a.style.padding = '3px 6px'
-      a.style.border = '1px solid #999'
-      a.style.borderRadius = '.2em'
-      a.style.textDecoration = 'none'
-      a.textContent = i
+      a.style.fontSize = 'small';
+      a.style.padding = '3px 6px';
+      a.style.border = '1px solid #999';
+      a.style.borderRadius = '.2em';
+      a.style.textDecoration = 'none';
+      a.textContent = i;
 
-      li.appendChild(a)
-      ul.appendChild(li)
+      li.appendChild(a);
+      ul.appendChild(li);
     }
 
-    nav.appendChild(h4)
-    nav.appendChild(ul)
-    divPadre.appendChild(nav)
+    nav.appendChild(h4);
+    nav.appendChild(ul);
+    divPadre.appendChild(nav);
   }
 
-
   fillTable(seasonNum = 1) {
-    const a = document.getElementById(seasonNum)
+    const a = document.getElementById(seasonNum);
     if (a) {
-      const aActive = document.querySelector('a.is-active')
-      a.setAttribute('class', 'is-active')
-      aActive.removeAttribute('class')
+      const aActive = document.querySelector('a.is-active');
+      a.setAttribute('class', 'is-active');
+      aActive.removeAttribute('class');
     }
 
-    let table = document.getElementById('tableMatches')
+    let table = document.getElementById('tableMatches');
     if (table === null) {
       table = document.createElement('table');
-      table.setAttribute('id', 'tableMatches')
-      table.setAttribute('class', 'matches')
-      table.style.paddingBottom = '15px'
-    }
-    else {
+      table.setAttribute('id', 'tableMatches');
+      table.setAttribute('class', 'matches');
+      table.style.paddingBottom = '15px';
+    } else {
       while (table.firstChild) {
-        table.firstChild.remove()
+        table.firstChild.remove();
       }
     }
 
-    const cabeceras = ['date', 'Home team', 'Away team', 'Home score', 'Away score']
+    const cabeceras = ['date', 'Home team', 'Away team', 'Home score', 'Away score'];
 
-    const header = document.createElement('tr')
+    const header = document.createElement('tr');
 
     for (let i = 0; i < cabeceras.length; i++) {
-      const th = document.createElement('th')
-      th.innerText = cabeceras[i]
-      header.appendChild(th)
+      const th = document.createElement('th');
+      th.innerText = cabeceras[i];
+      header.appendChild(th);
     }
 
-    table.appendChild(header)
+    table.appendChild(header);
 
     const listMatches = this.getMatchByDay(seasonNum).map(({ matchDay, ...item }) => item);
 
     listMatches.forEach(match => {
-
-      const row = document.createElement('tr')
+      const row = document.createElement('tr');
 
       for (const key in match) {
         if (!key.includes('Id') && match.hasOwnProperty(key)) {
-
-          const cell = document.createElement('td')
+          const cell = document.createElement('td');
           const element = match[key];
           if (key === 'date') {
-            const date = new Date(element)
-            cell.textContent = date.toLocaleDateString()
-          }
-          else if (key === 'homeTeam') {
-            cell.setAttribute('data-id', match['homeTeamId'])
-            cell.setAttribute('class', 'cell-over')
-            cell.textContent = element
-          }
-          else if (key === 'awayTeam') {
-            cell.setAttribute('data-id', match['awayTeamId'])
-            cell.setAttribute('class', 'cell-over')
-            cell.textContent = element
-          }
-          else {
-            cell.textContent = element
+            const date = new Date(element);
+            cell.textContent = date.toLocaleDateString();
+          } else if (key === 'homeTeam') {
+            cell.setAttribute('data-id', match['homeTeamId']);
+            cell.setAttribute('class', 'cell-over');
+            cell.textContent = element;
+          } else if (key === 'awayTeam') {
+            cell.setAttribute('data-id', match['awayTeamId']);
+            cell.setAttribute('class', 'cell-over');
+            cell.textContent = element;
+          } else {
+            cell.textContent = element;
           }
 
-          row.appendChild(cell)
+          row.appendChild(cell);
         }
       }
-      table.appendChild(row)
+      table.appendChild(row);
     });
 
-    this.setCellEvent()
+    this.setCellEvent();
 
-    return table
+    return table;
   }
 
   setCellEvent() {
-    const cells = document.querySelectorAll('.cell-over')
+    const cells = document.querySelectorAll('.cell-over');
 
-    cells.forEach(e => e.addEventListener('click',
-      function () {
-        handleGetTeamDetail(e.dataset.id)
-      }));
+    cells.forEach(e =>
+      e.addEventListener('click', function() {
+        handleGetTeamDetail(e.dataset.id);
+      })
+    );
   }
 }

@@ -6,7 +6,7 @@ export default class Scorers {
   }
 
   logData() {
-    console.log("Scorers:");
+    console.log('Scorers:');
 
     this.scorers.forEach(scorer => {
       const { player, team, goals } = scorer;
@@ -16,70 +16,71 @@ export default class Scorers {
   }
 
   renderData() {
-    const sidebarDiv = document.getElementById('sidebar')
-    const scorersDiv = document.createElement('div')
-    scorersDiv.setAttribute('id', 'scorers')
+    const sidebarDiv = document.getElementById('sidebar');
+    const scorersDiv = document.createElement('div');
+    scorersDiv.setAttribute('id', 'scorers');
 
-    const tTitulo = document.createElement('h2')
-    tTitulo.innerText = 'Scorers'
+    const tTitulo = document.createElement('h2');
+    tTitulo.innerText = 'Scorers';
 
-    scorersDiv.appendChild(tTitulo)
+    scorersDiv.appendChild(tTitulo);
 
     const table = document.createElement('table');
-    table.setAttribute('id', 'tableScorers')
-    table.setAttribute('class', 'scorers')
+    table.setAttribute('id', 'tableScorers');
+    table.setAttribute('class', 'scorers');
 
-    const header = document.createElement('tr')
+    const header = document.createElement('tr');
 
-    const playerHeaderCell = document.createElement('th')
-    const teamHeaderCell = document.createElement('th')
-    const goalsHeaderCell = document.createElement('th')
+    const playerHeaderCell = document.createElement('th');
+    const teamHeaderCell = document.createElement('th');
+    const goalsHeaderCell = document.createElement('th');
 
-    playerHeaderCell.innerText = 'Player'
-    teamHeaderCell.innerText = 'Team'
-    goalsHeaderCell.innerText = 'Goals'
+    playerHeaderCell.innerText = 'Player';
+    teamHeaderCell.innerText = 'Team';
+    goalsHeaderCell.innerText = 'Goals';
 
-    header.appendChild(playerHeaderCell)
-    header.appendChild(teamHeaderCell)
-    header.appendChild(goalsHeaderCell)
+    header.appendChild(playerHeaderCell);
+    header.appendChild(teamHeaderCell);
+    header.appendChild(goalsHeaderCell);
 
-    table.appendChild(header)
+    table.appendChild(header);
 
     this.scorers.forEach(scorer => {
-      const { teamId, player, team, goals } = scorer
+      const { teamId, player, team, goals } = scorer;
 
-      const row = document.createElement('tr')
+      const row = document.createElement('tr');
       //row.setAttribute('id', teamId)
-      row.setAttribute('data-id', teamId)
+      row.setAttribute('data-id', teamId);
 
-      const playerCell = document.createElement('td')
-      const teamCell = document.createElement('td')
-      const goalsCell = document.createElement('td')
+      const playerCell = document.createElement('td');
+      const teamCell = document.createElement('td');
+      const goalsCell = document.createElement('td');
 
-      playerCell.textContent = player
-      teamCell.textContent = team
-      goalsCell.textContent = goals
+      playerCell.textContent = player;
+      teamCell.textContent = team;
+      goalsCell.textContent = goals;
 
-      row.appendChild(playerCell)
-      row.appendChild(teamCell)
-      row.appendChild(goalsCell)
+      row.appendChild(playerCell);
+      row.appendChild(teamCell);
+      row.appendChild(goalsCell);
 
-      table.appendChild(row)
-    })
+      table.appendChild(row);
+    });
 
     scorersDiv.appendChild(table);
 
-    sidebarDiv.appendChild(scorersDiv)
+    sidebarDiv.appendChild(scorersDiv);
 
-    this.addEventClick()
+    this.addEventClick();
   }
 
   addEventClick() {
-    const cells = document.querySelectorAll('#tableScorers tr')
+    const cells = document.querySelectorAll('#tableScorers tr');
 
-    cells.forEach(e => e.addEventListener('click',
-      async function () {
-        handleGetTeamDetail(e.dataset.id)
-      }));
+    cells.forEach(e =>
+      e.addEventListener('click', async function() {
+        handleGetTeamDetail(e.dataset.id);
+      })
+    );
   }
 }

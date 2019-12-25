@@ -1,162 +1,170 @@
 a.is-active {
-    background-color: lightgray;
-    pointer-events: none;
-    color: white;
+  background-color: lightgray;
+  pointer-events: none;
+  color: white;
 }
 
 table {
-    width: 100%;
+  width: 100%;
 }
 
 table tr {
-    border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 
 table tr:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 table th {
-    background-color: lightgray;
-    padding: 8px 4px;
-    font-size: 14px;
-    text-transform: uppercase;
+  background-color: lightgray;
+  padding: 8px 4px;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 table td {
-    text-align: center;
-    padding: 8px 4px;
-    border-collapse: separate;
-    border-spacing: 50px 0;
+  text-align: center;
+  padding: 8px 4px;
+  border-collapse: separate;
+  border-spacing: 50px 0;
 }
 
-table.standings th:nth-child(2), table.standings td:nth-child(2) {
-    text-align: left;
+table.standings th:nth-child(2),
+table.standings td:nth-child(2) {
+  text-align: left;
 }
 
-table.scorers th:nth-child(1), table.scorers td:nth-child(1), table.scorers th:nth-child(2), table.scorers td:nth-child(2) {
-    text-align: left;
+table.scorers th:nth-child(1),
+table.scorers td:nth-child(1),
+table.scorers th:nth-child(2),
+table.scorers td:nth-child(2) {
+  text-align: left;
 }
 
-table.matches th:nth-child(2), table.matches td:nth-child(2), table.matches th:nth-child(3), table.matches td:nth-child(3) {
-    text-align: left;
+table.matches th:nth-child(2),
+table.matches td:nth-child(2),
+table.matches th:nth-child(3),
+table.matches td:nth-child(3) {
+  text-align: left;
 }
 
 table.team img {
-    width: 24px;
+  width: 24px;
 }
 
-table.standings tr:hover, table.scorers tr:hover {
-    background-color: #eee;
-    cursor: pointer;
+table.standings tr:hover,
+table.scorers tr:hover {
+  background-color: #eee;
+  cursor: pointer;
 }
 
 .pageHeader {
-    font-family: "Roboto", sans-serif;
-    font-size: 32px;
-    padding: 24px 12px 0;
-    text-transform: uppercase;
-    text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  padding: 24px 12px 0;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .cell-over:hover {
-    background-color: lightgray;
-    cursor: pointer;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 #app {
-    padding: 24px;
+  padding: 24px;
 }
 
 #navigation {
-    border-bottom: 3px solid black;
-    margin-bottom: 24px;
-    padding-left: 48px;
+  border-bottom: 3px solid black;
+  margin-bottom: 24px;
+  padding-left: 48px;
 }
 
 #navigation button {
-    font-family: "Roboto", sans-serif;
-    border: none;
-    padding: 0;
-    font-size: 24px;
-    font-weight: bold;
-    border: 2px solid black;
-    border-bottom: none;
-    padding: 4px 8px;
-    margin-right: 8px;
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  padding: 0;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-bottom: none;
+  padding: 4px 8px;
+  margin-right: 8px;
 }
 
 #navigation button.is-active {
-    background-color: lightgray;
-    pointer-events: none;
+  background-color: lightgray;
+  pointer-events: none;
 }
 
 #navigation button:hover {
-    background-color: darkgrey;
-    cursor: pointer;
+  background-color: darkgrey;
+  cursor: pointer;
 }
 
 #navigation button:focus {
-    outline: 0;
+  outline: 0;
 }
 
 #main {
-    font-family: "Roboto", sans-serif;
-    display: flex;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
 }
 
 #main h2 {
-    font-size: 24px;
-    margin-bottom: 24px;
-    padding-bottom: 8px;
-    font-weight: bold;
-    border-bottom: 1px solid black;
+  font-size: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
 }
 
 #content {
-    flex: 1;
-    padding-right: 8px;
+  flex: 1;
+  padding-right: 8px;
 }
 
 #sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding-left: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
 }
 
 #scorers {
-    flex: 1;
-    padding-bottom: 8px;
+  flex: 1;
+  padding-bottom: 8px;
 }
 
 #team {
-    flex: 1;
-    padding-top: 8px;
+  flex: 1;
+  padding-top: 8px;
 }
 
 /*  SPINNER REFERENCIA: https://www.w3schools.com/howto/howto_css_loader.asp */
 
 .loader {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-top: -20px;
-    margin-left: -20px;
-    border: 5px solid transparent;
-    border-top: 5px solid #e8438f;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  border: 5px solid transparent;
+  border-top: 5px solid #e8438f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

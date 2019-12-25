@@ -1,23 +1,23 @@
-import { ENDPOINTS, API_TOKEN } from "./config";
+import { ENDPOINTS, API_TOKEN } from './config';
 import {
   prepareMatches,
   prepareScorers,
   prepareStandings,
   prepareTeamDetails
-} from "./utils/prepareData";
-import { Matches, Scorers, Standings, Team } from "./Classes";
+} from './utils/prepareData';
+import { Matches, Scorers, Standings, Team } from './Classes';
 
 const headers = new Headers();
-headers.append("X-Auth-Token", API_TOKEN);
+headers.append('X-Auth-Token', API_TOKEN);
 
 async function getEndpoint(url) {
   try {
-    const response = await fetch(url, { method: "GET", headers });
+    const response = await fetch(url, { method: 'GET', headers });
     const apiData = await response.json();
 
     return apiData;
   } catch (err) {
-    console.log("fetch failed", err);
+    console.log('fetch failed', err);
   }
 }
 
